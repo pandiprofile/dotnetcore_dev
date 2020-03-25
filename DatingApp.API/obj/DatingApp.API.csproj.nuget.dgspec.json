@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\workout\\dotnetcore\\practices\\DatingApp.API\\DatingApp.API.csproj": {}
+    "C:\\workout\\dotnetcore\\practices\\datingapp.api\\DatingApp.API.csproj": {}
   },
   "projects": {
-    "C:\\workout\\dotnetcore\\practices\\DatingApp.API\\DatingApp.API.csproj": {
+    "C:\\workout\\dotnetcore\\practices\\datingapp.api\\DatingApp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\workout\\dotnetcore\\practices\\DatingApp.API\\DatingApp.API.csproj",
+        "projectUniqueName": "C:\\workout\\dotnetcore\\practices\\datingapp.api\\DatingApp.API.csproj",
         "projectName": "DatingApp.API",
-        "projectPath": "C:\\workout\\dotnetcore\\practices\\DatingApp.API\\DatingApp.API.csproj",
+        "projectPath": "C:\\workout\\dotnetcore\\practices\\datingapp.api\\DatingApp.API.csproj",
         "packagesPath": "C:\\Users\\sppro\\.nuget\\packages\\",
-        "outputPath": "C:\\workout\\dotnetcore\\practices\\DatingApp.API\\obj\\",
+        "outputPath": "C:\\workout\\dotnetcore\\practices\\datingapp.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,6 +40,48 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
