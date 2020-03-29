@@ -57,6 +57,9 @@ namespace DatingApp.API
         {
             services.AddControllers();
             services.AddScoped<DatingApp.API.Data.IAuthRepository, DatingApp.API.Data.AuthRepository>();
+            services.AddScoped<DatingApp.API.Data.IDatingRepository, DatingApp.API.Data.DatingRepository>();
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => 
                 {
