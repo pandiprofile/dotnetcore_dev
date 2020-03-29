@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    localStorage.removeItem('token');
     // const token = localStorage.getItem('token');
     // const user: User = JSON.parse(localStorage.getItem('user'));
     // if (token) {

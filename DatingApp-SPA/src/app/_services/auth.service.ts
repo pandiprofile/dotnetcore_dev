@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../_models/user';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -12,7 +14,7 @@ export class AuthService {
   decodedToken: any;
   jwtHelper = new JwtHelperService();
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, private userService: UserService) { }
 
 register(model: any) {
   return this.http.post('http://localhost:5000/api/auth/register', model).pipe(
@@ -35,6 +37,7 @@ login(model: any) {
         localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
         console.log(user);
+        // return this.userService.getUsers();
         return user;
       }
     })
