@@ -36,7 +36,7 @@ login(model: any) {
         localStorage.setItem('token', user.token);
         localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        console.log(user);
+        // console.log('decodedToken: ' + this.decodedToken.nameid);
         // return this.userService.getUsers();
         return user;
       }
