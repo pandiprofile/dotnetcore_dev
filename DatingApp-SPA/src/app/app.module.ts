@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
-// import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -28,13 +28,6 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
- }
-
-export class CustomHammerConfig extends HammerGestureConfig {
-   overrides = {
-     pinch: { enable: false },
-     rotate: { enable: false }
-   };
  }
 
 @NgModule({
@@ -60,7 +53,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
       FileUploadModule,
-      // NgxGalleryModule,
+      NgxGalleryModule,
       JwtModule.forRoot({
          config: {
            tokenGetter,
@@ -74,7 +67,6 @@ export class CustomHammerConfig extends HammerGestureConfig {
       MemberDetailResolver,
       MemberEditResolver,
       PreventUnsavedChanges,
-      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
       AppComponent
