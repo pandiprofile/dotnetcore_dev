@@ -20,12 +20,12 @@ namespace DatingApp.API.Controllers
     {
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;       
-         //private readonly IMapper _mapper;  
-        public AuthController(IAuthRepository repo, IConfiguration config )
+        private readonly IMapper _mapper;  
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper )
         {             
             _repo = repo;
             _config = config;
-           // _mapper = mapper;
+            _mapper = mapper;
         }    
         
         [AllowAnonymous]
@@ -84,8 +84,8 @@ namespace DatingApp.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            //var user = _mapper.Map<UserForListDto>(userFromRepo);
-            var user = userForLoginDto;
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
+            // var user = userForLoginDto;
 
             return Ok(new
             {

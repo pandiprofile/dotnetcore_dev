@@ -15,8 +15,8 @@ export class AuthService {
   decodedToken: any;
   currentUser: User;
   jwtHelper = new JwtHelperService();
-  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
-
+  photoUrl: string; // new BehaviorSubject<string>('../../assets/user.png');
+  // currentPhotoUrl = this.photoUrl.asObservable();
 constructor(private http: HttpClient, private userService: UserService) { }
 
 register(model: any) {
@@ -39,9 +39,9 @@ login(model: any) {
         localStorage.setItem('token', user.token);
         localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        // console.log('decodedToken: ' + this.decodedToken.nameid);
-        // return this.userService.getUsers();
-        return user;
+        this.currentUser = user.user;
+        // this.changeMemberPhoto(this.currentUser.photoUrl);
+        // return user;
       }
     })
   );
@@ -59,7 +59,7 @@ loggedIn() {
 }
 
 changeMemberPhoto(photoUrl: string) {
-  this.photoUrl.next(photoUrl);
+  this.photoUrl = photoUrl;
 }
 
 }
