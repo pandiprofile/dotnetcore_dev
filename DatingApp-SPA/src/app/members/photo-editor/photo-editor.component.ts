@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Photo } from 'src/app/_models/photo';
 import { environment } from 'src/environments/environment';
 import { FileUploader } from 'ng2-file-upload';
@@ -14,6 +14,7 @@ const URL  = ' ';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
+  @Output() getMemberPhotoChange: EventEmitter<string> = new EventEmitter<string>();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
@@ -64,8 +65,21 @@ export class PhotoEditorComponent implements OnInit {
       maxFileSize: 10 * 1024 * 1024
     });
   }
-
-  
-
-
+  setMainPhoto(photo: Photo): void  {
+    this.userService
+      .setMainPhoto(this.authService.decodedToken.nameid, photo.id)
+      .subscribe(
+        () => {
+          this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+          this.currentMain.isMain = false;
+          photo.isMain = true;
+          this.getMemberPhotoChange.emit(photo.url);
+          // this.authService.changeMemberPhoto(photo.url);
+          // this.authService.currentUser.photoUrl = photo.url;
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
+  }
 }

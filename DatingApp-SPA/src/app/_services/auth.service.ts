@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../_models/user';
 import { UserService } from './user.service';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,7 +13,9 @@ import { UserService } from './user.service';
 export class AuthService {
 
   decodedToken: any;
+  currentUser: User;
   jwtHelper = new JwtHelperService();
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
 
 constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -53,6 +56,10 @@ loggedIn() {
   return false;
   // return !this.jwtHelper.isTokenExpired(token);
   // console.log(token);
+}
+
+changeMemberPhoto(photoUrl: string) {
+  this.photoUrl.next(photoUrl);
 }
 
 }

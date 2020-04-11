@@ -5,6 +5,7 @@
       <button
         type="button"
         [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
+        (click)="setMainPhoto(photo)"
         [disabled]="photo.isMain"
         class="btn btn-sm mr-1"
       >
