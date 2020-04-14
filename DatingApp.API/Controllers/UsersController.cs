@@ -17,7 +17,7 @@ namespace DatingApp.API.Controllers
     {
         private readonly IDatingRepository _repo;
         private readonly IMapper _mapper;
-        public UsersController(IDatingRepository repository, IMapper mapper )
+        public UsersController(IDatingRepository repository, IMapper mapper)
         {
             _repo = repository;
             _mapper = mapper;
@@ -42,13 +42,13 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userParam) 
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userParam)
         {
-             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var userFromRepo = await _repo.GetUser(id);
-            _mapper.Map(userParam , userFromRepo);
+            _mapper.Map(userParam, userFromRepo);
 
             if (await _repo.SaveAll())
                 return NoContent();
