@@ -15,9 +15,10 @@ export class AuthService {
   decodedToken: any;
   currentUser: User;
   jwtHelper = new JwtHelperService();
-  photoUrl: string; // new BehaviorSubject<string>('../../assets/user.png');
-  // currentPhotoUrl = this.photoUrl.asObservable();
-constructor(private http: HttpClient, private userService: UserService) { }
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this.photoUrl.asObservable();
+
+  constructor(private http: HttpClient, private userService: UserService) { }
 
 register(model: any) {
   return this.http.post('http://localhost:5000/api/auth/register', model).pipe(
@@ -40,8 +41,7 @@ login(model: any) {
         localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
         this.currentUser = user.user;
-        // this.changeMemberPhoto(this.currentUser.photoUrl);
-        // return user;
+        this.changeMemberPhoto(this.currentUser.photoUrl);
       }
     })
   );
@@ -59,7 +59,7 @@ loggedIn() {
 }
 
 changeMemberPhoto(photoUrl: string) {
-  this.photoUrl = photoUrl;
+  this.photoUrl.next(photoUrl);
 }
 
 }
