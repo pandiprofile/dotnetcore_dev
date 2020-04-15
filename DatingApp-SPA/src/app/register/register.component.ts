@@ -3,6 +3,8 @@ import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +14,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter();
-  model: any = {};
+  user: User;
   bsConfig: Partial<BsDatepickerConfig>;
   registerForm: FormGroup;
 
   constructor(
     public authService: AuthService,
+    private router: Router,
     private alertify: AlertifyService,
     private formBuilder: FormBuilder,
     private fb: FormBuilder) { }
@@ -59,7 +62,24 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm);
+    if (this.registerForm.valid) {
+      this.user = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.user).subscribe(
+        () => {
+          this.alertify.success('Registration succesful');
+        },
+        error => {
+          this.alertify.error(error);
+        },
+        () => {
+          this.authService.login(this.user).subscribe(() => {
+            this.router.navigate(['/members']);
+          });
+        }
+      );
+    }
+
+    // console.log(this.registerForm);
     // this.authService.register(this.model).subscribe(
     //   next => {
     //     this.alertify.success('Registered successfully');
