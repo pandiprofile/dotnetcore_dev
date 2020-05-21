@@ -28,6 +28,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { AlbumComponent } from './album/album.component';
 
 
 export function tokenGetter() {
@@ -46,7 +47,8 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      AlbumComponent
    ],
    imports: [
       BrowserModule,

@@ -26,8 +26,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
-          },
+            "scripts": [
+              "src/assets/js/custom.js",
+              "src/assets/js/PhotoViewer.js"
+            ]
+          },  
           "configurations": {
             "production": {
               "fileReplacements": [
@@ -115,7 +118,7 @@
           "configurations": {
             "production": {
               "devServerTarget": "DatingApp-SPA:serve:production"
-            }
+            } 
           }
         }
       }
